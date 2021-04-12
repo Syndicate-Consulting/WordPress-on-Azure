@@ -21,3 +21,11 @@ Special thanks to
 [Geert Baeke at baeke.info](https://blog.baeke.info/2019/11/29/front-door-with-wordpress-on-azure-app-service/)
 
 [Marcus Rath over at Matrix Post](https://blog.matrixpost.net/deploy-wordpress-in-azure-app-service-with-staging-slots-for-the-production-and-development-environment/)
+
+
+### Stuff for wp-config.php if you don't use headers in Front Door
+define('WP_HOME', 'https://'. filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
+define('WP_SITEURL', 'https://'. filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
+define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
+
+This will work, only redirects your /wp-admin/ folders to the full Web App URL and not your custom domain name. So please just use the headers in Front Door. :)
