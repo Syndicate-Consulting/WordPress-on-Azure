@@ -15,6 +15,9 @@ if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') $_SERVER['HTTPS']='on';
 /** Sets Persistent Database Connection */
 define('USE_PCONNECT', true);
 
+## App Service Scale out issues
+Using the automatic Scale out option on a App Service Plan host can have unpredictable results on the responds times of a WordPress website on Azure. Enabling the custom autoscale option can result in a 300% increase in the responds time of a WordPress website on that host.
+
 ## External Links
 Special thanks to
 
